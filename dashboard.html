@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function checkAuth() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', checkAuth);
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Crud</h2>
+        <table id="clientsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Empresa</th>
+                    <th>Usuario</th>
+                </tr>
+            </thead>
+            <tbody id="clientList">
+                <!-- Os dados dos clientes serão inseridos aqui -->
+            </tbody>
+        </table>
+    </div>
+    <script src="dashboard.js"></script>
+</body>
+</html>
