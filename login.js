@@ -1,32 +1,32 @@
 document.getElementById('loginForm').addEventListener('submit', function (e) {
-  e.preventDefault(); // Previne o envio padrão do formulário
+  e.preventDefault();
 
-  const email = document.getElementById('email').value; // Obtém o valor do campo de email
-  const password = document.getElementById('password').value; // Obtém o valor do campo de senha
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
 
-  fetch('http://localhost:8000/api/login', { // URL da rota de login
-    method: 'POST', // Método da requisição
+  fetch('http://localhost:8000/api/login', {
+    method: 'POST',
     headers: {
-      'Content-Type': 'application/json', // Define o tipo do conteúdo
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ // Envia o corpo da requisição
+    body: JSON.stringify({
       email: email,
       password: password,
     })
   })
     .then(response => {
-      if (!response.ok) { // Verifica se a resposta não é 200 OK
-        throw new Error('Login falhou'); // Lança um erro
+      if (!response.ok) {
+        throw new Error('Login falhou');
       }
-      return response.json(); // Retorna a resposta como JSON
+      return response.json();
     })
     .then(data => {
-      console.log(data); // Exibe os dados no console (para depuração)
-      localStorage.setItem('token', data.token); // Armazena o token no localStorage
-      window.location.href = 'dashboard.html'; // Redireciona para a página de dashboard
+      console.log(data);
+      localStorage.setItem('token', data.token);
+      window.location.href = 'dashboard.html';
     })
     .catch(error => {
-      console.error('Erro:', error); // Exibe erros no console
-      document.getElementById('error-message').innerText = error.message; // Exibe mensagem de erro na tela
+      console.error('Erro:', error);
+      document.getElementById('error-message').innerText = error.message;
     });
 });
